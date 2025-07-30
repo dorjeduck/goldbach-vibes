@@ -18,11 +18,11 @@ Goldbach Vibes lets you explore these decompositions programmatically and visual
 
 - **Printing**: Print details and counts of Goldbach decompositions for even numbers.
 - **Plotting**: Visualize decomposition counts and distances between prime pairs.
-- **Vibe-coded**: Written in a clean, modern, and readable Python style.
+
 
 ## Examples
 
-### Plotting Decomposition Counts
+### Plotting Decomposition Counts (Goldbach's Comet)
 
 ```bash
 python examples/plot/decomposition_count_plot.py --start 6 --end 2000 --output imgs/decomposition_count_6_2000.png
