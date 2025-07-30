@@ -6,8 +6,12 @@ Goldbach Vibes is a Python project for exploring the Goldbach Conjecture through
 
 The Goldbach Conjecture is one of the oldest unsolved problems in number theory. It states that every even integer greater than 2 can be expressed as the sum of two prime numbers. For example:
 
-- 10 = 3 + 7
-- 28 = 11 + 17
+- 10: 2 decompositions
+  10 = 3 + 7
+  10 = 5 + 5
+- 10: 2 decompositions
+  10 = 3 + 7
+  10 = 5 + 5
 
 Goldbach Vibes lets you explore these decompositions programmatically and visually.
 

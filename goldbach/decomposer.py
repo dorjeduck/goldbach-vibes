@@ -54,28 +54,4 @@ class GoldbachDecomposer:
         distances = sorted(abs(p - n) for p, q in decomps)
         return distances
 
-    def analyze_range(self, start=4, end=100, show_decompositions=True):
-        """
-        For all even numbers in [start, end], print all Goldbach decompositions.
-        If show_decompositions is False, only print the count for each n.
-        """
-        if start % 2 != 0:
-            start += 1
-        if end % 2 != 0:
-            end -= 1
-        self.ensure_sieve(end)
-        if not show_decompositions:
-            counts = []
-            evens = list(range(start, end + 1, 2))
-            for n in evens:
-                decomps = self.goldbach_decompositions(n)
-                counts.append(len(decomps))
-            print(f"[{start},{end}]")
-            print(counts)
-        else:
-            for n in range(start, end + 1, 2):
-                decomps = self.goldbach_decompositions(n)
-                print(f"{n}: {len(decomps)} decompositions")
-                for p, q in decomps:
-                    print(f"  {n} = {p} + {q}")
-                print()
+    
