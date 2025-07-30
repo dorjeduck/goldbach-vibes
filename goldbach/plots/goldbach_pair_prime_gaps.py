@@ -4,6 +4,7 @@ Plot prime gaps for Goldbach pairs.
 
 from .base import GoldbachPlotBase
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 
 class PlotGoldbachPrimeGaps(GoldbachPlotBase):
@@ -20,14 +21,22 @@ class PlotGoldbachPrimeGaps(GoldbachPlotBase):
             for gap in goldbach_pairs.prime_gaps(even_n):
                 xs.append(even_n)
                 ys.append(gap)
-        n_points = len(xs)
-        marker_size = GoldbachPlotBase.get_marker_size(n_points)
+        evens = list(range(start, end + 1, 2))
+        marker_size = GoldbachPlotBase.get_marker_size(len(evens))
+
         plt.figure(figsize=(12, 6))
-        plt.scatter(xs, ys, s=marker_size, alpha=0.6, color="blue")
+        plt.scatter(xs, ys, s=marker_size**2, alpha=0.6, color="blue")
         plt.xlabel("Even Number")
         plt.ylabel("Prime Gap (q - p)")
         plt.title(f"Prime Gaps in Goldbach Pairs for Even Numbers in [{start},{end}]")
         plt.grid(True, alpha=0.3)
+        # Add a larger margin to the x-axis, but only label ticks for actual evens
+        margin = (max(evens) - min(evens)) * 0.02
+        plt.xlim(min(evens) - margin, max(evens) + margin)
+        ax = plt.gca()
+        ax.xaxis.set_major_locator(mticker.FixedLocator(evens))
+        ax.xaxis.set_minor_locator(mticker.NullLocator())
+        ax.set_xticklabels([str(e) for e in evens], rotation=0)
         plt.tight_layout()
         if output:
             plt.savefig(output)

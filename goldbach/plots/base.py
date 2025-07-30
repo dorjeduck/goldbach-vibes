@@ -15,4 +15,4 @@ class GoldbachPlotBase:
         max_size = 50
         min_size = 1
         size = max_size / np.sqrt(max(n_points, 1))
-        return max(min_size, size)
+        return int(round(max(min_size, size)))
