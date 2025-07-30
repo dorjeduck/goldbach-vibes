@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.decomposer import GoldbachDecomposer
+from goldbach.goldbach_pairs import GoldbachDecomposer
 from goldbach.plots.smallest_largest_primes import PlotSmallestLargestPrimes
 import argparse
 

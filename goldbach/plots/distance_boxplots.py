@@ -9,7 +9,7 @@ import numpy as np
 
 class PlotDistanceBoxplots(GoldbachPlotBase):
     @staticmethod
-    def plot(decomposer, start=4, end=100, normalize=False, showfliers=False):
+    def plot(goldbach_pairs, start=4, end=100, normalize=False, showfliers=False):
         """
         For each even number in [start, end], plot a boxplot of |p-n| for all Goldbach decompositions.
         If normalize is True, distances are divided by n.
@@ -17,7 +17,7 @@ class PlotDistanceBoxplots(GoldbachPlotBase):
         evens = list(range(start, end + 1, 2))
         data = []
         for even_n in evens:
-            dists = decomposer.decomposition_distances(even_n)
+            dists = goldbach_pairs.decomposition_distances(even_n)
             n = even_n // 2
             if normalize and dists:
                 data.append([d / n for d in dists])

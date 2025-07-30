@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 class PlotSmallestLargestPrimes(GoldbachPlotBase):
     @staticmethod
-    def plot(decomposer, start=4, end=100):
+    def plot(goldbach_pairs, start=4, end=100):
         """
         For each even number in [start, end], plot only the smallest and largest prime in the set of Goldbach decompositions.
         Smallest primes are plotted in orange, largest in green.
@@ -18,15 +18,12 @@ class PlotSmallestLargestPrimes(GoldbachPlotBase):
         xs_large = []
         ys_large = []
         for even_n in range(start, end + 1, 2):
-            decomps = decomposer.goldbach_decompositions(even_n)
+            decomps = goldbach_pairs.goldbach_pairs(even_n)
             if decomps:
-                p_values = [p for p, q in decomps]
-                smallest = min(p_values)
-                largest = max(p_values)
                 xs_small.append(even_n)
-                ys_small.append(smallest)
+                ys_small.append(decomps[0][0])
                 xs_large.append(even_n)
-                ys_large.append(largest)
+                ys_large.append(decomps[-1][1])
         n_points = len(xs_small)
         marker_size = GoldbachPlotBase.get_marker_size(n_points)
         plt.figure(figsize=(12, 6))
@@ -46,7 +43,7 @@ class PlotSmallestLargestPrimes(GoldbachPlotBase):
             alpha=0.8,
             label="Largest Prime",
         )
-        plt.xlabel("Even Number (2n)")
+        plt.xlabel("Even Number")
         plt.ylabel("Prime in Decomposition")
         plt.title(
             f"Smallest and Largest Primes in Goldbach Decompositions [{start},{end}]"

@@ -3,26 +3,29 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.goldbach_pairs import GoldbachDecomposer
-from goldbach.plots.prime_frequencies_numberline import PlotPrimeFrequenciesNumberline
+from goldbach.goldbach_pairs import GoldbachPairs
+from goldbach.plots.goldbach_pair_count import PlotGoldbachPairCounts
 import argparse
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Plot prime frequencies on the number line in Goldbach decompositions."
+        description="Plot number of Goldbach pairs per even number."
     )
     parser.add_argument(
         "--start", type=int, default=10, help="Start of even number range"
     )
     parser.add_argument("--end", type=int, default=100, help="End of even number range")
     parser.add_argument(
-        "--show_all_odds", action="store_true", help="Show all odd numbers on x-axis"
+        "--output",
+        type=str,
+        default=None,
+        help="Output file to save the plot (e.g. imgs/plot.png)",
     )
     args = parser.parse_args()
-    decomposer = GoldbachDecomposer()
-    PlotPrimeFrequenciesNumberline.plot(
-        decomposer, start=args.start, end=args.end, show_all_odds=args.show_all_odds
+    decomposer = GoldbachPairs()
+    PlotGoldbachPairCounts.plot(
+        decomposer, start=args.start, end=args.end, output=args.output
     )
 
 

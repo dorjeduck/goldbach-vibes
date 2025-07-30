@@ -3,15 +3,13 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.decomposer import GoldbachDecomposer
+from goldbach.goldbach_pairs import GoldbachPairs
 from goldbach.plots.distance_boxplots import PlotDistanceBoxplots
 import argparse
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Boxplot of Goldbach decomposition distances."
-    )
+    parser = argparse.ArgumentParser(description="Boxplot of Goldbach pair gaps.")
     parser.add_argument(
         "--start", type=int, default=10, help="Start of even number range"
     )
@@ -23,9 +21,9 @@ def main():
         "--showfliers", action="store_true", help="Show outliers in boxplot"
     )
     args = parser.parse_args()
-    decomposer = GoldbachDecomposer()
+    goldbach_pairs = GoldbachPairs()
     PlotDistanceBoxplots.plot(
-        decomposer,
+        goldbach_pairs,
         start=args.start,
         end=args.end,
         normalize=args.normalize,

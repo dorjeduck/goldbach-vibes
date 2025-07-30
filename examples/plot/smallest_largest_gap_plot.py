@@ -3,23 +3,22 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.decomposer import GoldbachDecomposer
-from goldbach.plots.decomposition_count import PlotDecompositionCounts
+from goldbach.goldbach_pairs import GoldbachDecomposer
+from goldbach.plots.smallest_largest_distance import PlotSmallestLargestDistance
 import argparse
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Plot number of Goldbach decompositions per even number."
+        description="Plot distance between smallest and largest p in Goldbach decompositions."
     )
     parser.add_argument(
         "--start", type=int, default=10, help="Start of even number range"
     )
     parser.add_argument("--end", type=int, default=100, help="End of even number range")
-    parser.add_argument("--output", type=str, default=None, help="Output file to save the plot (e.g. imgs/plot.png)")
     args = parser.parse_args()
     decomposer = GoldbachDecomposer()
-    PlotDecompositionCounts.plot(decomposer, start=args.start, end=args.end, output=args.output)
+    PlotSmallestLargestDistance.plot(decomposer, start=args.start, end=args.end)
 
 
 if __name__ == "__main__":

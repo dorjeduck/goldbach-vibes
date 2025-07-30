@@ -3,14 +3,14 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.decomposer import GoldbachDecomposer
-from goldbach.plots.decomposition_distances import PlotDecompositionDistances
+from goldbach.goldbach_pairs import GoldbachDecomposer
+from goldbach.prints.print import print_decomposition_list
 import argparse
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Plot Goldbach decomposition distances."
+        description="Print all Goldbach decompositions per even number."
     )
     parser.add_argument(
         "--start", type=int, default=10, help="Start of even number range"
@@ -18,7 +18,7 @@ def main():
     parser.add_argument("--end", type=int, default=100, help="End of even number range")
     args = parser.parse_args()
     decomposer = GoldbachDecomposer()
-    PlotDecompositionDistances.plot(decomposer, start=args.start, end=args.end)
+    print_decomposition_list(decomposer, args.start, args.end)
 
 
 if __name__ == "__main__":

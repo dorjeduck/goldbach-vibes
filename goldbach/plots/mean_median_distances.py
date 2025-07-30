@@ -9,7 +9,7 @@ import numpy as np
 
 class PlotMeanMedianDistances(GoldbachPlotBase):
     @staticmethod
-    def plot(decomposer, start=4, end=100, normalize=False):
+    def plot(goldbach_pairs, start=4, end=100, normalize=False):
         """
         For each even number in [start, end], plot the mean and median |p-n| as a function of the even number.
         If normalize is True, plot mean and median divided by n (the center).
@@ -18,7 +18,7 @@ class PlotMeanMedianDistances(GoldbachPlotBase):
         means = []
         medians = []
         for even_n in evens:
-            dists = decomposer.decomposition_distances(even_n)
+            dists = goldbach_pairs.decomposition_distances(even_n)
             n = even_n // 2
             if dists:
                 mean = np.mean(dists)
