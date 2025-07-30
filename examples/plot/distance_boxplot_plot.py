@@ -20,6 +20,12 @@ def main():
     parser.add_argument(
         "--showfliers", action="store_true", help="Show outliers in boxplot"
     )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=None,
+        help="Output file to save the plot (e.g. imgs/plot.png)",
+    )
     args = parser.parse_args()
     goldbach_pairs = GoldbachPairs()
     PlotDistanceBoxplots.plot(
@@ -28,6 +34,7 @@ def main():
         end=args.end,
         normalize=args.normalize,
         showfliers=args.showfliers,
+        output=args.output,
     )
 
 

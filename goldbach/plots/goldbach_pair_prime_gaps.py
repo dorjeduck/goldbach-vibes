@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 class PlotGoldbachPrimeGaps(GoldbachPlotBase):
     @staticmethod
-    def plot(goldbach_pairs, start=4, end=100):
+    def plot(goldbach_pairs, start=4, end=100, output=None):
         """
         For each even number in [start, end], plot all prime gaps (q - p) for Goldbach pairs as a scatter plot.
         X-axis: even number, Y-axis: q - p for each Goldbach pair.
@@ -29,4 +29,7 @@ class PlotGoldbachPrimeGaps(GoldbachPlotBase):
         plt.title(f"Prime Gaps in Goldbach Pairs for Even Numbers in [{start},{end}]")
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.show()
+        if output:
+            plt.savefig(output)
+        else:
+            plt.show()

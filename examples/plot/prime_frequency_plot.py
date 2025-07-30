@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.goldbach_pairs import GoldbachDecomposer
+from goldbach.goldbach_pairs import GoldbachPairs
 from goldbach.plots.prime_frequencies import PlotPrimeFrequencies
 import argparse
 
@@ -19,10 +19,20 @@ def main():
     parser.add_argument(
         "--top_n", type=int, default=20, help="Number of top primes to show"
     )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default=None,
+        help="Output file to save the plot (e.g. imgs/plot.png)",
+    )
     args = parser.parse_args()
-    decomposer = GoldbachDecomposer()
+    goldbach_pairs = GoldbachPairs()
     PlotPrimeFrequencies.plot(
-        decomposer, start=args.start, end=args.end, top_n=args.top_n
+        goldbach_pairs,
+        start=args.start,
+        end=args.end,
+        top_n=args.top_n,
+        output=args.output,
     )
 
 

@@ -9,7 +9,7 @@ import numpy as np
 
 class PlotMeanMedianDistances(GoldbachPlotBase):
     @staticmethod
-    def plot(goldbach_pairs, start=4, end=100, normalize=False):
+    def plot(goldbach_pairs, start=4, end=100, normalize=False, output=None):
         """
         For each even number in [start, end], plot the mean and median |p-n| as a function of the even number.
         If normalize is True, plot mean and median divided by n (the center).
@@ -20,33 +20,30 @@ class PlotMeanMedianDistances(GoldbachPlotBase):
         for even_n in evens:
             dists = goldbach_pairs.decomposition_distances(even_n)
             n = even_n // 2
+            if normalize and dists:
+                dists = [d / n for d in dists]
             if dists:
-                mean = np.mean(dists)
-                median = np.median(dists)
-                if normalize:
-                    means.append(mean / n)
-                    medians.append(median / n)
-                else:
-                    means.append(mean)
-                    medians.append(median)
+                means.append(np.mean(dists))
+                medians.append(np.median(dists))
             else:
-                means.append(np.nan)
-                medians.append(np.nan)
+                means.append(0)
+                medians.append(0)
         plt.figure(figsize=(12, 6))
+        plt.plot(evens, means, label="Mean", color="blue")
+        plt.plot(evens, medians, label="Median", color="red")
+        plt.xlabel("Even Number")
         if normalize:
-            plt.plot(evens, means, label="Mean |p - n| / n", color="orange")
-            plt.plot(evens, medians, label="Median |p - n| / n", color="green")
-            plt.ylabel("Normalized Distance from Center (|p - n| / n)")
+            plt.ylabel("Normalized |p - n| / n")
+            plt.title(
+                f"Mean/Median of Normalized |p - n| for Even Numbers in [{start},{end}]"
+            )
         else:
-            plt.plot(evens, means, label="Mean |p - n|", color="orange")
-            plt.plot(evens, medians, label="Median |p - n|", color="green")
-            plt.ylabel("Distance from Center (|p - n|)")
-        plt.xlabel("Even Numbers")
-        plt.title(
-            f"Mean and Median |p - n| for Even Numbers in [{start},{end}]"
-            + (" (normalized)" if normalize else "")
-        )
+            plt.ylabel("|p - n| (Distance from Center)")
+            plt.title(f"Mean/Median of |p - n| for Even Numbers in [{start},{end}]")
         plt.legend()
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.show()
+        if output:
+            plt.savefig(output)
+        else:
+            plt.show()

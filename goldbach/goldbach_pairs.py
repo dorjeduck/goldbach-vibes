@@ -1,5 +1,5 @@
 """
-Goldbach Decomposer: Efficiently computes all Goldbach decompositions for even numbers in a range.
+Goldbach Pairs: Efficiently computes all Goldbach pairs for even numbers in a range.
 """
 
 

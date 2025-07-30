@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 class PlotSmallestLargestDistance(GoldbachPlotBase):
     @staticmethod
-    def plot(goldbach_pairs, start=4, end=100):
+    def plot(goldbach_pairs, start=4, end=100, output=None):
         """
         For each even number in [start, end], plot the distance between the smallest and largest p in the decompositions.
         """
@@ -26,4 +26,7 @@ class PlotSmallestLargestDistance(GoldbachPlotBase):
         plt.title(f"Smallest-Largest Goldbach Pair Distance in [{start},{end}]")
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.show()
+        if output:
+            plt.savefig(output)
+        else:
+            plt.show()

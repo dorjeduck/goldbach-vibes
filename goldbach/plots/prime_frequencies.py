@@ -9,7 +9,7 @@ from collections import Counter
 
 class PlotPrimeFrequencies(GoldbachPlotBase):
     @staticmethod
-    def plot(goldbach_pairs, start=4, end=100, top_n=30):
+    def plot(goldbach_pairs, start=4, end=100, top_n=30, output=None):
         """
         For all even numbers in [start, end], count how often each prime appears in any Goldbach decomposition.
         Plot the top_n most frequent primes as a bar chart.
@@ -30,4 +30,7 @@ class PlotPrimeFrequencies(GoldbachPlotBase):
             f"Top {top_n} Most Frequent Primes in Goldbach Pairs for [{start},{end}]"
         )
         plt.tight_layout()
-        plt.show()
+        if output:
+            plt.savefig(output)
+        else:
+            plt.show()
