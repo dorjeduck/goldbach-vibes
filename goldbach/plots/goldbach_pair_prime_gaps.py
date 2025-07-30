@@ -27,7 +27,7 @@ class PlotGoldbachPrimeGaps(GoldbachPlotBase):
         plt.figure(figsize=(12, 6))
         plt.scatter(xs, ys, s=marker_size**2, alpha=0.6, color="blue")
         plt.xlabel("Even Number")
-        plt.ylabel("Prime Gap (q - p)")
+        plt.ylabel("Prime Gaps (q - p)")
         plt.title(f"Prime Gaps in Goldbach Pairs for Even Numbers in [{start},{end}]")
         plt.grid(True, alpha=0.3)
         # Add a larger margin to the x-axis, but only label ticks for actual evens
