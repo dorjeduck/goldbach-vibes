@@ -20,10 +20,12 @@ Goldbach Vibes lets you explore these Goldbach pairs programmatically and visual
 ### Plotting Goldbach Pair Counts (Goldbach's Comet)
 
 ```bash
-python examples/plot/goldbach_pair_count_plot.py --start 6 --end 2000 
+python examples/plot/goldbach_pair_count_plot.py --start 6 --end 50
 ```
 
-Resulting plot:
+Plots
+
+![Goldbach Pair Count Plot](imgs/goldbach_pairs_count_6_50.png)
 
 ![Goldbach Pair Count Plot](imgs/goldbach_pairs_count_6_2000.png)
 
@@ -32,10 +34,12 @@ Resulting plot:
 Goldbach pair prime gaps visualize the difference between the two primes (q - p) in each Goldbach pair (p,q) for even numbers in a given range.
 
 ```bash
-python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 2000 
+python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 50 
 ```
 
-Resulting plot:
+Plots:
+
+![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_50.png)
 
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_2000.png)
 
