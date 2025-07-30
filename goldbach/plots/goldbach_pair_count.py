@@ -29,17 +29,20 @@ class PlotGoldbachPairCounts(GoldbachPlotBase):
         plt.ylabel("Number of Goldbach Pairs")
         plt.title(f"Goldbach Pair Counts for Even Numbers in [{start},{end}]")
         plt.grid(True, alpha=0.3)
-        # Add a larger margin to the x-axis, but only label ticks for actual evens in the range
+        # Add a larger margin to the x-axis, but only label a subset of even numbers for readability
         margin = (max(evens) - min(evens)) * 0.02
         left = min(evens) - margin
         right = max(evens) + margin
         plt.xlim(left, right)
         ax = plt.gca()
-        ax.xaxis.set_major_locator(mticker.MultipleLocator(2))
+        # Choose a step so that at most 20 ticks are shown
+        max_ticks = 20
+        step = max(2, 2 * ((len(evens) - 1) // (max_ticks - 1) + 1))
+        ticks = [e for i, e in enumerate(evens) if i % (step // 2) == 0]
+        if evens[-1] not in ticks:
+            ticks.append(evens[-1])
+        ax.xaxis.set_major_locator(mticker.FixedLocator(ticks))
         ax.xaxis.set_minor_locator(mticker.NullLocator())
-        # Only label ticks for evens in the range, not for the margin
-        ticks = [e for e in evens if left < e < right]
-        ax.set_xticks(ticks)
         ax.set_xticklabels([str(e) for e in ticks], rotation=0)
         ax.yaxis.set_major_locator(mticker.MaxNLocator(integer=True))
         plt.tight_layout()

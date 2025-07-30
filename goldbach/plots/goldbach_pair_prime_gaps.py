@@ -30,13 +30,19 @@ class PlotGoldbachPrimeGaps(GoldbachPlotBase):
         plt.ylabel("Prime Gaps (q - p)")
         plt.title(f"Prime Gaps in Goldbach Pairs for Even Numbers in [{start},{end}]")
         plt.grid(True, alpha=0.3)
-        # Add a larger margin to the x-axis, but only label ticks for actual evens
+        # Add a larger margin to the x-axis, but only label a subset of even numbers for readability
         margin = (max(evens) - min(evens)) * 0.02
         plt.xlim(min(evens) - margin, max(evens) + margin)
         ax = plt.gca()
-        ax.xaxis.set_major_locator(mticker.FixedLocator(evens))
+        # Choose a step so that at most 20 ticks are shown
+        max_ticks = 20
+        step = max(2, 2 * ((len(evens) - 1) // (max_ticks - 1) + 1))
+        ticks = [e for i, e in enumerate(evens) if i % (step // 2) == 0]
+        if evens[-1] not in ticks:
+            ticks.append(evens[-1])
+        ax.xaxis.set_major_locator(mticker.FixedLocator(ticks))
         ax.xaxis.set_minor_locator(mticker.NullLocator())
-        ax.set_xticklabels([str(e) for e in evens], rotation=0)
+        ax.set_xticklabels([str(e) for e in ticks], rotation=0)
         plt.tight_layout()
         if output:
             plt.savefig(output)
