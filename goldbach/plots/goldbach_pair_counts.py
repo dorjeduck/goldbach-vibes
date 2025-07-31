@@ -1,35 +1,36 @@
 """
-Plot prime gaps for Goldbach pairs.
+Plot the number of Goldbach pairs for each even number.
 """
 
 from .utils import get_marker_size
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
-def plot_goldbach_pair_prime_gaps(goldbach_pairs, start=4, end=100, output=None):
+def plot_goldbach_pair_counts(goldbach_pairs, start=4, end=100, output=None):
     """
-    For each even number in [start, end], plot all prime gaps (q - p) for Goldbach pairs as a scatter plot.
-    X-axis: even number, Y-axis: q - p for each Goldbach pair.
-    Marker size is chosen based on the number of points.
+    Plot the number of Goldbach pairs for each even number in [start, end].
     """
-    xs = []
-    ys = []
-    for even_n in range(start, end + 1, 2):
-        for gap in goldbach_pairs.prime_gaps(even_n):
-            xs.append(even_n)
-            ys.append(gap)
     evens = list(range(start, end + 1, 2))
+    counts = [len(goldbach_pairs.goldbach_pairs(n)) for n in evens]
     marker_size = get_marker_size(len(evens))
-
     plt.figure(figsize=(12, 6))
-    plt.scatter(xs, ys, s=marker_size**2, alpha=0.6, color="blue")
+    plt.plot(
+        evens,
+        counts,
+        marker="o",
+        linestyle="",
+        color="blue",
+        markersize=marker_size,
+    )
     plt.xlabel("Even Number")
-    plt.ylabel("Prime Gaps (q - p)")
-    plt.title(f"Prime Gaps in Goldbach Pairs for Even Numbers in [{start},{end}]")
+    plt.ylabel("Number of Goldbach Pairs")
+    plt.title(f"Goldbach Pair Counts for Even Numbers in [{start},{end}]")
     plt.grid(True, alpha=0.3)
     # Add a larger margin to the x-axis, but only label a subset of even numbers for readability
     margin = (max(evens) - min(evens)) * 0.02
-    plt.xlim(min(evens) - margin, max(evens) + margin)
+    left = min(evens) - margin
+    right = max(evens) + margin
+    plt.xlim(left, right)
     ax = plt.gca()
     # Choose a step so that at most 20 ticks are shown
     max_ticks = 20
@@ -40,6 +41,7 @@ def plot_goldbach_pair_prime_gaps(goldbach_pairs, start=4, end=100, output=None)
     ax.xaxis.set_major_locator(mticker.FixedLocator(ticks))
     ax.xaxis.set_minor_locator(mticker.NullLocator())
     ax.set_xticklabels([str(e) for e in ticks], rotation=0)
+    ax.yaxis.set_major_locator(mticker.MaxNLocator(integer=True))
     plt.tight_layout()
     if output:
         plt.savefig(output)

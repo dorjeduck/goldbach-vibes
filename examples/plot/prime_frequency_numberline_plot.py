@@ -4,7 +4,9 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from goldbach.goldbach_pairs import GoldbachPairs
-from goldbach.plots.prime_frequencies_numberline import PlotPrimeFrequenciesNumberline
+from goldbach.plots.prime_frequencies_numberline import (
+    plot_prime_frequencies_numberline,
+)
 import argparse
 
 
@@ -27,7 +29,7 @@ def main():
     )
     args = parser.parse_args()
     decomposer = GoldbachPairs()
-    PlotPrimeFrequenciesNumberline.plot(
+    plot_prime_frequencies_numberline(
         decomposer,
         start=args.start,
         end=args.end,

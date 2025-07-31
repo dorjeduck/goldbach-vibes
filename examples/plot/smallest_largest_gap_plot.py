@@ -4,7 +4,9 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from goldbach.goldbach_pairs import GoldbachPairs
-from goldbach.plots.smallest_largest_distance import PlotSmallestLargestDistance
+from goldbach.plots.smallest_largest_distance_gap import (
+    plot_smallest_largest_distance_gap,
+)
 import argparse
 
 
@@ -24,7 +26,7 @@ def main():
     )
     args = parser.parse_args()
     decomposer = GoldbachPairs()
-    PlotSmallestLargestDistance.plot(
+    plot_smallest_largest_distance_gap(
         decomposer, start=args.start, end=args.end, output=args.output
     )
 

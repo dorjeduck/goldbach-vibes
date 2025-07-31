@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from goldbach.goldbach_pairs import GoldbachPairs
-from goldbach.plots.distance_boxplots import PlotDistanceBoxplots
+from goldbach.plots.distance_boxplots import plot_distance_boxplots
 import argparse
 
 
@@ -28,7 +28,7 @@ def main():
     )
     args = parser.parse_args()
     goldbach_pairs = GoldbachPairs()
-    PlotDistanceBoxplots.plot(
+    plot_distance_boxplots(
         goldbach_pairs,
         start=args.start,
         end=args.end,

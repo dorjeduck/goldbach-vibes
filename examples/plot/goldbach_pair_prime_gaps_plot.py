@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from goldbach.goldbach_pairs import GoldbachPairs
-from goldbach.plots.goldbach_pair_prime_gaps import PlotGoldbachPrimeGaps
+from goldbach.plots.goldbach_pair_prime_gaps import plot_goldbach_pair_prime_gaps
 import argparse
 
 
@@ -24,10 +24,9 @@ def main():
     )
     args = parser.parse_args()
     decomposer = GoldbachPairs()
-    PlotGoldbachPrimeGaps.plot(
+    plot_goldbach_pair_prime_gaps(
         decomposer, start=args.start, end=args.end, output=args.output
     )
-
 
 if __name__ == "__main__":
     main()

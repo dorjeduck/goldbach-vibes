@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from goldbach.goldbach_pairs import GoldbachPairs
-from goldbach.plots.mean_median_distances import PlotMeanMedianDistances
+from goldbach.plots.mean_median_distances import plot_mean_median_distances
 import argparse
 
 
@@ -27,7 +27,7 @@ def main():
     )
     args = parser.parse_args()
     decomposer = GoldbachPairs()
-    PlotMeanMedianDistances.plot(
+    plot_mean_median_distances(
         decomposer,
         start=args.start,
         end=args.end,

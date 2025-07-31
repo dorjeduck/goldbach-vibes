@@ -20,14 +20,14 @@ Goldbach Vibes lets you explore these Goldbach pairs programmatically and visual
 ### Plotting Goldbach Pair Counts (Goldbach's Comet)
 
 ```bash
-python examples/plot/goldbach_pair_count_plot.py --start 6 --end 50
+python examples/plot/goldbach_pair_counts_plot.py --start 6 --end 50
 ```
 
 Plots
 
-![Goldbach Pair Count Plot](imgs/goldbach_pairs_count_6_50.png)
+![Goldbach Pair Count Plot](imgs/goldbach_pairs_counts_6_50.png)
 
-![Goldbach Pair Count Plot](imgs/goldbach_pairs_count_6_2000.png)
+![Goldbach Pair Count Plot](imgs/goldbach_pairs_counts_6_2000.png)
 
 ### Plotting Goldbach Pair Prime Gaps
 
