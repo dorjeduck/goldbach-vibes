@@ -7,16 +7,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_mean_median_distances(goldbach_pairs, start=4, end=100, normalize=False, output=None):
+def plot_mean_median_distances(
+    goldbach_pairs, start=4, end=100, normalize=False, output=None
+):
     """
     For each even number in [start, end], plot the mean and median |p-n| as a function of the even number.
     If normalize is True, plot mean and median divided by n (the center).
     """
+    
     evens = list(range(start, end + 1, 2))
     means = []
     medians = []
     for even_n in evens:
-        dists = goldbach_pairs.decomposition_distances(even_n)
+        dists = goldbach_pairs.prime_gaps(even_n)
         n = even_n // 2
         if normalize and dists:
             dists = [d / n for d in dists]

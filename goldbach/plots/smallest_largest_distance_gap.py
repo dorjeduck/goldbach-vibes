@@ -6,7 +6,6 @@ from .utils import get_marker_size
 import matplotlib.pyplot as plt
 
 
-
 def plot_smallest_largest_distance_gap(goldbach_pairs, start=4, end=100, output=None):
     """
     For each even number in [start, end], plot the distance between the smallest and largest p in the decompositions.
@@ -14,7 +13,7 @@ def plot_smallest_largest_distance_gap(goldbach_pairs, start=4, end=100, output=
     xs = []
     ys = []
     for even_n in range(start, end + 1, 2):
-        decomps = goldbach_pairs.goldbach_pairs(even_n)
+        decomps = goldbach_pairs.get(even_n)
         if decomps:
             xs.append(even_n)
             ys.append(decomps[-1][1] - decomps[0][0])

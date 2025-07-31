@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.goldbach_pairs import GoldbachPairs
+from goldbach import GoldbachPairs
 from goldbach.plots.mean_median_distances import plot_mean_median_distances
 import argparse
 
@@ -26,9 +26,9 @@ def main():
         help="Output file to save the plot (e.g. imgs/plot.png)",
     )
     args = parser.parse_args()
-    decomposer = GoldbachPairs()
+    goldbach_pairs = GoldbachPairs()
     plot_mean_median_distances(
-        decomposer,
+        goldbach_pairs,
         start=args.start,
         end=args.end,
         normalize=args.normalize,

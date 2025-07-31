@@ -16,7 +16,7 @@ def plot_smallest_largest_primes(goldbach_pairs, start=4, end=100, output=None):
     xs_large = []
     ys_large = []
     for even_n in range(start, end + 1, 2):
-        decomps = goldbach_pairs.goldbach_pairs(even_n)
+        decomps = goldbach_pairs.get(even_n)
         if decomps:
             xs_small.append(even_n)
             ys_small.append(decomps[0][0])

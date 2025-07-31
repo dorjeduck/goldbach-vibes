@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.goldbach_pairs import GoldbachPairs
+from goldbach import GoldbachPairs
 from goldbach.plots.prime_frequencies import plot_prime_frequencies
 import argparse
 

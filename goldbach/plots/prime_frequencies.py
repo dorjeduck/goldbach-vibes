@@ -12,13 +12,19 @@ def plot_prime_frequencies(goldbach_pairs, start=4, end=100, top_n=30, output=No
     For all even numbers in [start, end], count how often each prime appears in any Goldbach decomposition.
     Plot the top_n most frequent primes as a bar chart.
     """
+
     prime_counter = Counter()
     for even_n in range(start, end + 1, 2):
-        decomps = goldbach_pairs.goldbach_pairs(even_n)
+        decomps = goldbach_pairs.get(even_n)
         for p, q in decomps:
-            prime_counter[p] += 1
-            prime_counter[q] += 1
-    most_common = prime_counter.most_common(top_n)
+            if p <= end:
+                prime_counter[p] += 1
+            if q <= end:
+                prime_counter[q] += 1
+    # Only keep primes <= end
+    filtered = [(prime, freq) for prime, freq in prime_counter.items() if prime <= end]
+    filtered.sort(key=lambda x: x[1], reverse=True)
+    most_common = filtered[:top_n]
     primes, freqs = zip(*most_common) if most_common else ([], [])
     plt.figure(figsize=(12, 6))
     plt.bar(primes, freqs, color="purple")

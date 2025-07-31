@@ -12,6 +12,8 @@ def plot_goldbach_pair_prime_gaps(goldbach_pairs, start=4, end=100, output=None)
     X-axis: even number, Y-axis: q - p for each Goldbach pair.
     Marker size is chosen based on the number of points.
     """
+
+   
     xs = []
     ys = []
     for even_n in range(start, end + 1, 2):

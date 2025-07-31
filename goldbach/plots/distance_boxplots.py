@@ -22,7 +22,7 @@ def plot_distance_boxplots(
     evens = list(range(start, end + 1, 2))
     data = []
     for even_n in evens:
-        dists = goldbach_pairs.decomposition_distances(even_n)
+        dists = goldbach_pairs.prime_gaps(even_n)
         n = even_n // 2
         if normalize and dists:
             data.append([d / n for d in dists])

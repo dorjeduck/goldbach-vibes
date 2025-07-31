@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from goldbach.goldbach_pairs import GoldbachPairs
+from goldbach import GoldbachPairs
 from goldbach.plots.goldbach_pair_prime_gaps import plot_goldbach_pair_prime_gaps
 import argparse
 
@@ -23,10 +23,11 @@ def main():
         help="Output file to save the plot (e.g. imgs/plot.png)",
     )
     args = parser.parse_args()
-    decomposer = GoldbachPairs()
+    goldbach_pairs = GoldbachPairs()
     plot_goldbach_pair_prime_gaps(
-        decomposer, start=args.start, end=args.end, output=args.output
+        goldbach_pairs, start=args.start, end=args.end, output=args.output
     )
+
 
 if __name__ == "__main__":
     main()

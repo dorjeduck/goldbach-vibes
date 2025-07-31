@@ -6,12 +6,14 @@ from .utils import get_marker_size
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+
 def plot_goldbach_pair_counts(goldbach_pairs, start=4, end=100, output=None):
     """
     Plot the number of Goldbach pairs for each even number in [start, end].
     """
+
     evens = list(range(start, end + 1, 2))
-    counts = [len(goldbach_pairs.goldbach_pairs(n)) for n in evens]
+    counts = [len(goldbach_pairs.get(n)) for n in evens]
     marker_size = get_marker_size(len(evens))
     plt.figure(figsize=(12, 6))
     plt.plot(

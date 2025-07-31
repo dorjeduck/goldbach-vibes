@@ -17,7 +17,7 @@ Goldbach Vibes lets you explore these Goldbach pairs programmatically and visual
 
 ## Examples
 
-### Plotting Goldbach Pair Counts (Goldbach's Comet)
+### Plotting Goldbach Pair Counts
 
 ```bash
 python examples/plot/goldbach_pair_counts_plot.py --start 6 --end 50
@@ -26,6 +26,8 @@ python examples/plot/goldbach_pair_counts_plot.py --start 6 --end 50
 Plots
 
 ![Goldbach Pair Count Plot](imgs/goldbach_pairs_counts_6_50.png)
+
+#### Goldbach's Comet
 
 ![Goldbach Pair Count Plot](imgs/goldbach_pairs_counts_6_2000.png)
 
@@ -40,14 +42,29 @@ python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 50
 Plots:
 
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_50.png)
-
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_2000.png)
+
+### Plotting Prime Frequencies in Goldbach Pairs
+
+Prime frequency plots show how often each prime appears in any Goldbach pair for even numbers in a given range.
+
+```bash
+python examples/plot/prime_frequency_numberline_plot.py --start 6 --end 50
+```
+
+Plots:
+
+![Prime Frequency Plot](imgs/prime_frequency_numberline_6_50.png)
+![Prime Frequency Plot](imgs/prime_frequency_numberline_6_1000.png)
+
 
 ## Changelog
 
-### 2025-07-30
+- 2025-07-31
+  - Added prime frequency plots and images to the documentation and examples.
 
-- First commit: Added examples for Goldbach pair count and Goldbach pair distance plotting.
+- 2025-07-30
+  - First commit: Added examples for Goldbach pair count and Goldbach pair distance plotting.
 
 ---
 

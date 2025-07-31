@@ -14,8 +14,7 @@ class GoldbachPairs:
         self.primes = []
         self.primes_set = set()
 
-    @staticmethod
-    def sieve_primes(limit):
+    def sieve_primes(self, limit):
         """Return a list of all primes <= limit using Sieve of Eratosthenes."""
         sieve = [True] * (limit + 1)
         sieve[0:2] = [False, False]
@@ -31,7 +30,7 @@ class GoldbachPairs:
             self.primes_set = set(self.primes)
             self.max_n = upto
 
-    def goldbach_pairs(self, even_n):
+    def get(self, even_n):
         """Return all Goldbach pairs (p, q) with p <= q, p + q = even_n."""
         self.ensure_sieve(even_n)
         pairs = []
@@ -43,46 +42,34 @@ class GoldbachPairs:
                 pairs.append((p, q))
         return pairs
 
-    def decomposition_distances(self, even_n):
-        """
-        For a given even number 2n, return a sorted list of |p - n| for each Goldbach decomposition (p, q).
-        """
-        if even_n % 2 != 0 or even_n < 4:
-            raise ValueError("Input must be an even number >= 4")
-        n = even_n // 2
-        pairs = self.goldbach_pairs(even_n)
-        distances = sorted(abs(p - n) for p, q in pairs)
-        return distances
-
     def prime_gaps(self, even_n):
         """
         For a given even number, return a sorted list of q - p for each Goldbach pair (p, q).
         """
         if even_n % 2 != 0 or even_n < 4:
             raise ValueError("Input must be an even number >= 4")
-        pairs = self.goldbach_pairs(even_n)
+        pairs = self.get_goldbach_pairs(even_n)
         gaps = sorted(q - p for p, q in pairs)
         return gaps
 
-    def analyze_range(self, start=4, end=100, show_decompositions=True):
-        if start % 2 != 0:
-            start += 1
-        if end % 2 != 0:
-            end -= 1
-        self.ensure_sieve(end)
-        if not show_decompositions:
-            counts = []
-            evens = list(range(start, end + 1, 2))
-            for n in evens:
-                pairs = self.goldbach_pairs(n)
-                counts.append(len(pairs))
-            print(f"[{start},{end}]")
-            print(counts)
-        else:
-            for n in range(start, end + 1, 2):
-                pairs = self.goldbach_pairs(n)
-                label = "Goldbach pair" if len(pairs) == 1 else "Goldbach pairs"
-                print(f"{n}: {len(pairs)} {label}")
-                for p, q in pairs:
-                    print(f"  {n} = {p} + {q}")
-                print()
+    def pair_with_smallest_lower_prime(self, even_n):
+        """
+        For a given even number, return the Goldbach pair (p, q) with the largest lower prime p.
+        Returns None if no such pair exists.
+        """
+        self.ensure_sieve(even_n)
+        pairs = self.get(even_n)
+        if not pairs:
+            return None
+        return min(pairs, key=lambda pair: pair[0])
+
+    def pair_with_largest_lower_prime(self, even_n):
+        """
+        For a given even number, return the Goldbach pair (p, q) with the largest lower prime p.
+        Returns None if no such pair exists.
+        """
+        self.ensure_sieve(even_n)
+        pairs = self.get(even_n)
+        if not pairs:
+            return None
+        return max(pairs, key=lambda pair: pair[0])
