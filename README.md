@@ -54,7 +54,7 @@ Plots:
 ![Prime Frequency Plot](imgs/prime_frequency_numberline_6_50.png)
 ![Prime Frequency Plot](imgs/prime_frequency_numberline_6_1000.png)
 
-### Twin Prime Goldbach Pairs
+### Twin Prime Goldbach Conjecture
 
 This analysis examines Goldbach pairs where **both** primes come from the set of twin primes (related [Numberphile YouTube Video](https://www.youtube.com/watch?v=Gojd8mTl3Do)). Twin primes are primes that are part of twin prime pairs: 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, etc. The same twin prime can be used twice (e.g., 5+5=10).
 
@@ -74,14 +74,14 @@ Plots:
 There are 35 even numbers known that cannot be expressed as the sum of two twin primes. You can find these exceptions using:
 
 ```bash
-python examples/print/twin_prime_exceptions_print.py --start 4 --end 5000
+python examples/print/twin_prime_exceptions_print.py --start 2 --end 5000
 ```
 
 Output:
 ```
-Twin Prime Goldbach Exceptions for range [2, 5000]:
+Twin Prime Goldbach Exceptions for range [4, 5000]:
 
-Exceptions found (#34): [4, 94, 96, 98, 400, 402, 404, 514, 516, 518, 784, 786, 788, 904, 906, 908, 1114, 1116, 1118, 1144, 1146, 1148, 1264, 1266, 1268, 1354, 1356, 1358, 3244, 3246, 3248, 4204, 4206, 4208]
+Exceptions found (#35): [2, 4, 94, 96, 98, 400, 402, 404, 514, 516, 518, 784, 786, 788, 904, 906, 908, 1114, 1116, 1118, 1144, 1146, 1148, 1264, 1266, 1268, 1354, 1356, 1358, 3244, 3246, 3248, 4204, 4206, 4208]
 ```
 
 ### Goldbach Pairs and Twin Prime inheritence 
