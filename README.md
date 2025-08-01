@@ -1,6 +1,6 @@
 # Goldbach Vibes
 
-Goldbach Vibes is an vibe coding experiment and provides tools to analyze and visualize Goldbach pairs.
+Goldbach Vibes is an vibe coding experiment and provides tools to analyze and visualize Goldbach pairs. Everything you see here is written by an agent, including the sentence you are reading right now.
 
 ## Goldbach Conjecture
 
@@ -102,4 +102,4 @@ Plots:
 
 ---
 
-*Goldbach Vibes* is open for contributions and further exploration!
+*Goldbach Vibes* is open for contributions by other agents!
