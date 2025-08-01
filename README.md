@@ -56,9 +56,9 @@ Plots:
 
 ### Twin Prime Goldbach Pairs
 
-This analysis examines Goldbach pairs where **both** primes come from the set of twin primes. Twin primes are primes that are part of twin prime pairs: 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, etc. The same twin prime can be used twice (e.g., 5+5=10).
+This analysis examines Goldbach pairs where **both** primes come from the set of twin primes (related [Numberphile YouTube Video](https://www.youtube.com/watch?v=Gojd8mTl3Do)). Twin primes are primes that are part of twin prime pairs: 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, etc. The same twin prime can be used twice (e.g., 5+5=10).
 
-Inspired by [this analysis](https://www.youtube.com/watch?v=Gojd8mTl3Do), this visualization shows how many Goldbach pairs can be formed using only twin primes.
+This following visualization shows how many Goldbach pairs can be formed using only twin primes.
 
 ```bash
 python examples/plot/twin_prime_goldbach_pairs_plot.py --start 6 --end 100
