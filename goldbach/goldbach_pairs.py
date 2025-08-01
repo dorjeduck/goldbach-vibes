@@ -142,3 +142,38 @@ class GoldbachPairs:
             current_start += subrange_size
 
         return results
+
+    def get_twin_primes_set(self, limit):
+        """
+        Return the set of all primes that are part of twin prime pairs up to the limit.
+        A prime p is in this set if either (p, p+2) or (p-2, p) are both prime.
+        """
+        self.ensure_sieve(limit)
+        twin_primes = set()
+
+        for p in self.primes:
+            if p > limit:
+                break
+            # Check if p is part of a twin prime pair
+            if (p + 2 in self.primes_set) or (p - 2 in self.primes_set):
+                twin_primes.add(p)
+
+        return twin_primes
+
+    def count_twin_prime_goldbach_pairs(self, even_n):
+        """
+        For a given even number, return the count of Goldbach pairs (p, q) where both p and q
+        are from the set of twin primes. Twin primes can be used twice (e.g., 5+5=10).
+        """
+        self.ensure_sieve(even_n)
+        twin_primes = self.get_twin_primes_set(even_n)
+
+        count = 0
+        for p in twin_primes:
+            q = even_n - p
+            if (
+                q >= p and q in twin_primes
+            ):  # p <= q to avoid double counting, both must be twin primes
+                count += 1
+
+        return count
