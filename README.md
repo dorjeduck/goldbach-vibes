@@ -59,8 +59,6 @@ Plots:
 
 **Twin primes** Pairs of prime numbers that differ by exactly 2, such as (3, 5), (5, 7), (11, 13), etc.
 
-### Goldbach Pairs and Twin Primes
-
 **Inheritance Property:** For given twin primes (p<sub>l</sub>, p<sub>u</sub>) and prime q, if k = p<sub>l</sub> + q, then k + 2 = p<sub>u</sub> + q is automatically a Goldbach pair.
 
 **Example:** 16 = 11 + 5 implies 18 = 13 + 5 (using twin primes 11, 13).
