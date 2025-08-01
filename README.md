@@ -85,8 +85,8 @@ python examples/plot/critical_density_plot.py --start 6 --end 500 --subrange-siz
 
 Plots:
 
-![Critical Density Plot](imgs/critical_density_6_500.png)
-![Critical Density Plot](imgs/critical_density_6_20000.png)
+![Critical Density Plot](imgs/critical_density_6_500_50.png)
+![Critical Density Plot](imgs/critical_density_6_20000_1000.png)
 
 ## Changelog
 

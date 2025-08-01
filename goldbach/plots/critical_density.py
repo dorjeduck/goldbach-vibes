@@ -56,28 +56,29 @@ def plot_critical_density(
 
     # Extract data for plotting
     subrange_midpoints = []
-    critical_counts = []
+    density_percentages = []
 
     for subrange_start, subrange_end, critical_count, total_evens in density_data:
         midpoint = (subrange_start + subrange_end) / 2
+        density_pct = (critical_count / total_evens * 100) if total_evens > 0 else 0
 
         subrange_midpoints.append(midpoint)
-        critical_counts.append(critical_count)
+        density_percentages.append(density_pct)
 
     # Create the plot
     plt.figure(figsize=(12, 6))
 
-    # Plot critical count as bars
+    # Plot critical density as bars
     plt.bar(
         subrange_midpoints,
-        critical_counts,
+        density_percentages,
         alpha=0.7,
         color="red",
         width=subrange_size * 0.8,
     )
     plt.xlabel("Subrange Midpoint")
-    plt.ylabel("Critical Even Numbers Count")
-    plt.title(f"Critical Even Numbers Count by Subrange (size={subrange_size})")
+    plt.ylabel("Critical Numbers Density (%)")
+    plt.title(f"Critical Even Numbers Density by Subrange (size={subrange_size})")
     plt.grid(True, alpha=0.3)
 
     # Set reasonable number of x-axis ticks
