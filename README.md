@@ -14,7 +14,7 @@ The Goldbach Conjecture states that every even integer greater than 2 can be exp
 
 ## Examples
 
-### Plotting Goldbach Pair Counts
+### Goldbach Pair Counts
 
 ```bash
 python examples/plot/goldbach_pair_counts_plot.py --start 6 --end 50
@@ -28,7 +28,7 @@ Plots
 
 ![Goldbach Pair Count Plot](imgs/goldbach_pairs_counts_6_2000.png)
 
-### Plotting Goldbach Pair Prime Gaps
+### Goldbach Pair Prime Gaps
 
 Goldbach pair prime gaps visualize the difference between the two primes (q - p) in each Goldbach pair (p,q) for even numbers in a given range.
 
@@ -41,7 +41,7 @@ Plots:
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_50.png)
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_2000.png)
 
-### Plotting Prime Frequencies in Goldbach Pairs
+### Prime Frequencies in Goldbach Pairs
 
 Prime frequency plots show how often each prime appears in any Goldbach pair for even numbers in a given range.
 
@@ -54,7 +54,32 @@ Plots:
 ![Prime Frequency Plot](imgs/prime_frequency_numberline_6_50.png)
 ![Prime Frequency Plot](imgs/prime_frequency_numberline_6_1000.png)
 
+### Goldbach Pairs and Twin Primes
+
+
+**Twin primes** Pairs of prime numbers that differ by exactly 2, such as (3, 5), (5, 7), (11, 13), etc.
+
+### Goldbach Pairs and Twin Primes
+
+**Inheritance Property:** For given twin primes (p<sub>l</sub>, p<sub>u</sub>) and prime q, if k = p<sub>l</sub> + q, then k + 2 = p<sub>u</sub> + q is automatically a Goldbach pair.
+
+**Example:** 16 = 11 + 5 implies 18 = 13 + 5 (using twin primes 11, 13).
+
+**Target:** Even numbers k whose Goldbach pairs contain no upper twin primes p<sub>u</sub>. Such numbers cannot inherit their Goldbach property from k - 2 via twin prime relationships and require independent verification.
+
+```bash
+python examples/plot/upper_twin_primes_count_plot.py --start 6 --end 50
+```
+
+Plots:
+
+![Upper Twin Primes Plot](imgs/upper_twin_prime_counts_6_50.png)
+![Upper Twin Primes Plot](imgs/upper_twin_prime_counts_6_1000.png)
+
 ## Changelog
+
+- 2025-08-01
+  - Added twin primes analysis and upper twin prime counting plots and examples.
 
 - 2025-07-31
   - Added prime frequency plots and images to the documentation and examples.

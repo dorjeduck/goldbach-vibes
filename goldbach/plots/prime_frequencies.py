@@ -15,8 +15,8 @@ def plot_prime_frequencies(goldbach_pairs, start=4, end=100, top_n=30, output=No
 
     prime_counter = Counter()
     for even_n in range(start, end + 1, 2):
-        decomps = goldbach_pairs.get(even_n)
-        for p, q in decomps:
+        gpairs = goldbach_pairs.get(even_n)
+        for p, q in gpairs:
             if p <= end:
                 prime_counter[p] += 1
             if q <= end:
