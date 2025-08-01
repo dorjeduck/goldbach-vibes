@@ -71,7 +71,7 @@ Plots:
 
 #### Twin Prime Goldbach Exceptions
 
-There are exactly 35 even numbers that cannot be expressed as the sum of two twin primes, with the largest being 4208. You can find these exceptions using:
+There are 35 even numbers known that cannot be expressed as the sum of two twin primes. You can find these exceptions using:
 
 ```bash
 python examples/print/twin_prime_exceptions_print.py --start 2 --end 5000
