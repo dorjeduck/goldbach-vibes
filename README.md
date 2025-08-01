@@ -66,8 +66,8 @@ python examples/plot/twin_prime_goldbach_pairs_plot.py --start 6 --end 100
 
 Plots:
 
-![Twin Prime Goldbach Pairs Plot](imgs/twin_prime_goldbach_pairs_6_100.png)
-![Twin Prime Goldbach Pairs Plot](imgs/twin_prime_goldbach_pairs_6_1000.png)
+![Twin Prime Goldbach Pairs Plot](imgs/twin_prime_goldbach_pairs_2_100.png)
+![Twin Prime Goldbach Pairs Plot](imgs/twin_prime_goldbach_pairs_2_1000.png)
 
 #### Twin Prime Goldbach Exceptions
 
