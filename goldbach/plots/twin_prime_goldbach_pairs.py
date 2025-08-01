@@ -15,7 +15,7 @@ def plot_twin_prime_goldbach_pairs(goldbach_pairs, start=4, end=100, output=None
     counts = [goldbach_pairs.count_twin_prime_goldbach_pairs(n) for n in evens]
 
     plt.figure(figsize=(12, 6))
-    plt.bar(evens, counts, color="purple", alpha=0.7)
+    plt.bar(evens, counts, color="darkorange", alpha=0.7)
 
     # Set x-axis ticks
     if end - start <= 50:
