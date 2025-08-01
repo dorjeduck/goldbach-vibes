@@ -56,14 +56,13 @@ Plots:
 
 ### Goldbach Pairs and Twin Primes
 
+**Twin primes** Pairs of prime numbers that differ by 2, such as (3, 5), (5, 7), (11, 13), etc.
 
-**Twin primes** Pairs of prime numbers that differ by exactly 2, such as (3, 5), (5, 7), (11, 13), etc.
-
-**Inheritance Property:** For given twin primes (p<sub>l</sub>, p<sub>u</sub>) and prime q, if k = p<sub>l</sub> + q, then k + 2 = p<sub>u</sub> + q is automatically a Goldbach pair.
+**Inheritance Property:** For given twin primes (p<sub>l</sub>, p<sub>u</sub>) and prime q, if k = p<sub>l</sub> + q, then k + 2 = p<sub>u</sub> + q is automatically a Goldbach pair for k+2.
 
 **Example:** 16 = 11 + 5 implies 18 = 13 + 5 (using twin primes 11, 13).
 
-**Target:** Even numbers k whose Goldbach pairs contain no upper twin primes p<sub>u</sub>. Such numbers cannot inherit their Goldbach property from k - 2 via twin prime relationships and require independent verification.
+**Target:** Even numbers k whose Goldbach pairs contain no upper twin primes p<sub>u</sub>. Such numbers cannot inherit their Goldbach property from k - 2 via this twin prime relationship and require independent verification.
 
 ```bash
 python examples/plot/upper_twin_primes_count_plot.py --start 6 --end 50
@@ -74,10 +73,26 @@ Plots:
 ![Upper Twin Primes Plot](imgs/upper_twin_prime_counts_6_50.png)
 ![Upper Twin Primes Plot](imgs/upper_twin_prime_counts_6_1000.png)
 
+### Critical Even Numbers Density
+
+Critical even numbers are those with no upper twin primes in any of their Goldbach pairs. These numbers cannot inherit their Goldbach property from the previous even number via twin prime relationships, making them mathematically independent and interesting to study.
+
+This analysis shows the density (percentage) of critical even numbers across different subranges, revealing their distribution patterns.
+
+```bash
+python examples/plot/critical_density_plot.py --start 6 --end 500 --subrange-size 50
+```
+
+Plots:
+
+![Critical Density Plot](imgs/critical_density_6_500.png)
+![Critical Density Plot](imgs/critical_density_6_20000.png)
+
 ## Changelog
 
 - 2025-08-01
   - Added twin primes analysis and upper twin prime counting plots and examples.
+  - Added critical even numbers density analysis across subranges.
 
 - 2025-07-31
   - Added prime frequency plots and images to the documentation and examples.

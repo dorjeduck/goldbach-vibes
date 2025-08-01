@@ -4,7 +4,6 @@ Goldbach Pairs: Efficiently computes all Goldbach pairs for even numbers in a ra
 
 
 class GoldbachPairs:
-    
     """
     Main class for computing Goldbach pairs and related statistics.
     Sieve is built and expanded automatically as needed.
@@ -74,7 +73,7 @@ class GoldbachPairs:
         if not pairs:
             return None
         return max(pairs, key=lambda pair: pair[0])
-    
+
     def count_pairs_with_upper_twin_prime(self, even_n):
         """
         For a given even number, return the count of Goldbach pairs (p, q) where either p or q is an upper twin prime (i.e., p and p-2 are prime, or q and q-2 are prime).
@@ -99,3 +98,47 @@ class GoldbachPairs:
                 count += 1
         return count
 
+    def is_critical_even_number(self, even_n):
+        """
+        Return True if the even number has no upper twin primes in any of its Goldbach pairs.
+        These are 'critical' numbers that cannot inherit their Goldbach property from even_n-2.
+        """
+        return self.count_pairs_with_upper_twin_prime(even_n) == 0
+
+    def get_critical_even_numbers(self, start, end):
+        """
+        Return a list of critical even numbers in the range [start, end].
+        Critical numbers have no upper twin primes in any of their Goldbach pairs.
+        """
+        critical_numbers = []
+        for n in range(start + (start % 2), end + 1, 2):  # ensure even numbers only
+            if self.is_critical_even_number(n):
+                critical_numbers.append(n)
+        return critical_numbers
+
+    def critical_density_by_subrange(self, start, end, subrange_size=100):
+        """
+        Analyze the density of critical even numbers across subranges.
+        Returns a list of tuples: (subrange_start, subrange_end, critical_count, total_evens_in_subrange)
+        """
+        results = []
+        current_start = start
+
+        while current_start <= end:
+            current_end = min(current_start + subrange_size - 1, end)
+            if current_end % 2 == 1:  # ensure even end
+                current_end -= 1
+
+            critical_numbers = self.get_critical_even_numbers(
+                current_start, current_end
+            )
+            total_evens = len(
+                range(current_start + (current_start % 2), current_end + 1, 2)
+            )
+
+            results.append(
+                (current_start, current_end, len(critical_numbers), total_evens)
+            )
+            current_start += subrange_size
+
+        return results
