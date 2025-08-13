@@ -71,11 +71,16 @@ The Goldbach distance for a number n is defined as the smallest prime gap among 
 
 ```bash
 # Plot Goldbach distances
-python examples/plot/goldbach_distance_plot.py --start 3 --end 50
+python examples/plot/goldbach_distance_plot.py --start 2 --end 50
 
 # Print distances with details
-python examples/print/goldbach_distance_print.py --start 3 --end 20 --show-details
+python examples/print/goldbach_distance_print.py --start 2 --end 20 --show-details
 ```
+
+Plots:
+
+![Goldbach Distance Plot](imgs/goldbach_distance_2_50.png)
+![Goldbach Distance Plot](imgs/goldbach_distance_2_5000.png)
 
 ### Top Goldbach Distances
 
@@ -83,20 +88,25 @@ Find and visualize the numbers with the largest Goldbach distances in a given ra
 
 ```bash
 # Print top 10 largest distances in range
-python examples/print/top_goldbach_distances_print.py --start 3 --end 100 --top 10
+python examples/print/top_goldbach_distances_print.py --start 2 --end 100 --top 10
 
 # Print top 5 with detailed Goldbach pairs information
-python examples/print/top_goldbach_distances_print.py --start 3 --end 50 --top 5 --show-details
+python examples/print/top_goldbach_distances_print.py --start 2 --end 50 --top 5 --show-details
 
 # Generate bar plot of top distances
-python examples/plot/top_goldbach_distances_plot.py --start 3 --end 100 --top 15
+python examples/plot/top_goldbach_distances_plot.py --start 2 --end 100 --top 15
 ```
 
 The function properly handles ties - if multiple numbers share the same distance, they are all included in the results. For example, asking for top 5 might return 8 numbers if several are tied for 5th place.
 
+Plots:
+
+![Top Goldbach Distances Plot](imgs/top_goldbach_distances_2_50_top8.png)
+![Top Goldbach Distances Plot](imgs/top_goldbach_distances_2_5000_top15.png)
+
 Example output:
 ```
-Top 5 Goldbach Distances in range [3, 50]:
+Top 5 Goldbach Distances in range [2, 50]:
 # 1: n= 46, distance=15
 # 2: n= 49, distance=12  
 # 3: n= 22, distance= 9
