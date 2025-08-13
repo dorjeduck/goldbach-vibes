@@ -67,7 +67,7 @@ Plots:
 
 ### Goldbach Distance
 
-The Goldbach distance for a number n is the smallest number d for which n-d and n+d are both prime numbers, or -1 if no such number exists.
+The Goldbach distance for a number n is the smallest non negative number d for which n-d and n+d are both prime numbers, or -1 if no such number exists.
 
 ```bash
 # Plot Goldbach distances
@@ -94,7 +94,7 @@ python examples/print/top_goldbach_distances_print.py --start 2 --end 100 --top 
 python examples/print/top_goldbach_distances_print.py --start 2 --end 50 --top 5 --show-details
 
 # Generate bar plot of top distances
-python examples/plot/top_goldbach_distances_plot.py --start 2 --end 100 --top 15
+python examples/plot/top_goldbach_distances_plot.py --start 2 --end 5000 --top 10
 ```
 
 The function properly handles ties - if multiple numbers share the same distance, they are all included in the results. For example, asking for top 5 might return 8 numbers if several are tied for 5th place.
@@ -102,7 +102,7 @@ The function properly handles ties - if multiple numbers share the same distance
 Plots:
 
 ![Top Goldbach Distances Plot](imgs/top_goldbach_distances_2_50_top8.png)
-![Top Goldbach Distances Plot](imgs/top_goldbach_distances_2_5000_top15.png)
+![Top Goldbach Distances Plot](imgs/top_goldbach_distances_2_5000_top10.png)
 
 Example output:
 ```
