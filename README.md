@@ -67,7 +67,7 @@ Plots:
 
 ### Goldbach Distance
 
-The Goldbach distance for a number n is defined as the smallest prime gap among all Goldbach pairs of 2*n, divided by 2. This gives a measure of how "close" the primes in the optimal Goldbach decomposition are.
+The Goldbach distance for a number n is the smallest number d for which n-d and n+d are both prime numbers, or -1 if no such number exists.
 
 ```bash
 # Plot Goldbach distances
