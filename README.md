@@ -1,6 +1,17 @@
 # Goldbach Vibes
 
-Goldbach Vibes is an vibe coding experiment and provides tools to analyze and visualize Goldbach pairs. Basically everything you find here is written by an agent, including the sentence you are reading right now.
+Goldbach Vibes is an vibe coding experiment and provides tools to analyze and visualize Goldbach pairs. Basically e## Changelog
+
+- 2025-08-13
+  - Added gap mode options for Goldbach pair prime gaps analysis.
+  - New methods: `smallest_prime_gap()` and `largest_prime_gap()` for focused gap analysis.
+  - Updated plotting and print scripts to support `--gap-mode` (all, smallest, largest).
+  - Fixed bug in `prime_gaps()` method that was calling non-existent `get_goldbach_pairs()`.
+  - Added Goldbach distance analysis: `goldbach_distance(n)` method with plotting and print examples.
+  - Added top Goldbach distances analysis: `top_goldbach_distances()` method to find numbers with largest distances.
+  - Created plotting and print scripts for top distances analysis with proper tie handling.
+
+- 2025-08-02ything you find here is written by an agent, including the sentence you are reading right now.
 
 ## Goldbach Conjecture
 
@@ -36,10 +47,65 @@ Goldbach pair prime gaps visualize the difference between the two primes (q - p)
 python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 50 
 ```
 
+You can also focus on specific gaps:
+
+```bash
+# Show only the smallest gap for each even number
+python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 50 --gap-mode smallest
+
+# Show only the largest gap for each even number  
+python examples/plot/goldbach_pair_prime_gaps_plot.py --start 6 --end 50 --gap-mode largest
+
+# Print gaps instead of plotting
+python examples/print/goldbach_pair_prime_gaps_print.py --start 10 --end 20 --gap-mode smallest
+```
+
 Plots:
 
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_50.png)
 ![Goldbach Pair Prime Gaps Plot](imgs/goldbach_pair_prime_gaps_6_2000.png)
+
+### Goldbach Distance
+
+The Goldbach distance for a number n is defined as the smallest prime gap among all Goldbach pairs of 2*n, divided by 2. This gives a measure of how "close" the primes in the optimal Goldbach decomposition are.
+
+```bash
+# Plot Goldbach distances
+python examples/plot/goldbach_distance_plot.py --start 3 --end 50
+
+# Print distances with details
+python examples/print/goldbach_distance_print.py --start 3 --end 20 --show-details
+```
+
+### Top Goldbach Distances
+
+Find and visualize the numbers with the largest Goldbach distances in a given range. This analysis helps identify which numbers have the most "spread out" optimal Goldbach pairs.
+
+```bash
+# Print top 10 largest distances in range
+python examples/print/top_goldbach_distances_print.py --start 3 --end 100 --top 10
+
+# Print top 5 with detailed Goldbach pairs information
+python examples/print/top_goldbach_distances_print.py --start 3 --end 50 --top 5 --show-details
+
+# Generate bar plot of top distances
+python examples/plot/top_goldbach_distances_plot.py --start 3 --end 100 --top 15
+```
+
+The function properly handles ties - if multiple numbers share the same distance, they are all included in the results. For example, asking for top 5 might return 8 numbers if several are tied for 5th place.
+
+Example output:
+```
+Top 5 Goldbach Distances in range [3, 50]:
+# 1: n= 46, distance=15
+# 2: n= 49, distance=12  
+# 3: n= 22, distance= 9
+# 3: n= 28, distance= 9
+# 3: n= 32, distance= 9
+# 3: n= 38, distance= 9
+
+Maximum distance: 15 (achieved by n=46)
+```
 
 ### Prime Frequencies in Goldbach Pairs
 

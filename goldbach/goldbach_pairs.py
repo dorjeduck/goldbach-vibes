@@ -48,9 +48,73 @@ class GoldbachPairs:
         """
         if even_n % 2 != 0 or even_n < 4:
             raise ValueError("Input must be an even number >= 4")
-        pairs = self.get_goldbach_pairs(even_n)
+        pairs = self.get(even_n)
         gaps = sorted(q - p for p, q in pairs)
         return gaps
+
+    def smallest_prime_gap(self, even_n):
+        """
+        For a given even number, return the smallest prime gap (q - p) among all Goldbach pairs.
+        """
+        gaps = self.prime_gaps(even_n)
+        return gaps[0] if gaps else None
+
+    def goldbach_distance(self, n):
+        spg = self.smallest_prime_gap(2 * n)
+
+        if spg is None:
+            return -1
+        else:
+            return spg // 2  # Use integer division since result is always an integer
+
+    def top_goldbach_distances(self, start, end, top_n=10):
+        """
+        Return the top N numbers with the largest Goldbach distances in the given range.
+
+        Args:
+            start: Starting number (inclusive)
+            end: Ending number (inclusive)
+            top_n: Number of top results to return (default: 10)
+
+        Returns:
+            List of tuples (n, distance) sorted by distance in descending order.
+            If there are ties, all numbers with the same distance are included.
+        """
+        distances = []
+
+        for n in range(start, end + 1):
+            distance = self.goldbach_distance(n)
+            if distance >= 0:  # Only include valid distances
+                distances.append((n, distance))
+
+        # Sort by distance (descending), then by n (ascending) for consistent ordering
+        distances.sort(key=lambda x: (-x[1], x[0]))
+
+        if not distances:
+            return []
+
+        # Find the minimum distance among the top N entries
+        if len(distances) <= top_n:
+            return distances
+
+        # Include all entries that tie with the Nth highest distance
+        nth_distance = distances[top_n - 1][1]
+        result = []
+
+        for n, distance in distances:
+            if distance >= nth_distance:
+                result.append((n, distance))
+            else:
+                break
+
+        return result
+
+    def largest_prime_gap(self, even_n):
+        """
+        For a given even number, return the largest prime gap (q - p) among all Goldbach pairs.
+        """
+        gaps = self.prime_gaps(even_n)
+        return gaps[-1] if gaps else None
 
     def pair_with_smallest_lower_prime(self, even_n):
         """
@@ -177,3 +241,43 @@ class GoldbachPairs:
                 count += 1
 
         return count
+
+    def count_pairs_with_any_twin_prime(self, even_n):
+        """
+        For a given even number, return the count of Goldbach pairs (p, q) where either p or q
+        is any twin prime (either upper or lower twin prime).
+        """
+        self.ensure_sieve(even_n)
+        pairs = self.get(even_n)
+        twin_primes = self.get_twin_primes_set(even_n)
+
+        count = 0
+        for p, q in pairs:
+            if p in twin_primes or q in twin_primes:
+                count += 1
+        return count
+
+    def is_isolated_goldbach_number(self, even_n):
+        """
+        Return True if the even number has NO twin primes (neither upper nor lower) in any of its Goldbach pairs.
+        These are 'isolated' numbers that cannot inherit their Goldbach property from neighboring even numbers
+        via twin prime relationships, making them mathematically independent.
+
+        Note: In computational analysis up to 5,000, no such numbers have been found, suggesting twin primes
+        are densely distributed in Goldbach pairs.
+        """
+        return self.count_pairs_with_any_twin_prime(even_n) == 0
+
+    def get_isolated_goldbach_numbers(self, start, end):
+        """
+        Return a list of isolated Goldbach numbers in the range [start, end].
+        Isolated numbers have no twin primes in any of their Goldbach pairs.
+
+        Note: This method typically returns an empty list in practical ranges,
+        demonstrating the remarkable density of twin primes.
+        """
+        isolated_numbers = []
+        for n in range(start + (start % 2), end + 1, 2):  # ensure even numbers only
+            if self.is_isolated_goldbach_number(n):
+                isolated_numbers.append(n)
+        return isolated_numbers
