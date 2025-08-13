@@ -117,6 +117,28 @@ Top 5 Goldbach Distances in range [2, 50]:
 Maximum distance: 15 (achieved by n=46)
 ```
 
+### Goldbach Distance Circles
+
+A beautiful geometric visualization that represents Goldbach distances as circles. Each number n is shown with a circle of radius d (its Goldbach distance) centered at n. The circles intersect the x-axis at n-d and n+d, which are both prime numbers, providing an intuitive geometric interpretation of the Goldbach distance concept.
+
+```bash
+# Generate clean circles visualization (default - best for larger ranges)
+python examples/plot/goldbach_distance_circles_plot.py --start 4 --end 20
+
+# Generate detailed visualization with info boxes (better for smaller ranges)
+python examples/plot/goldbach_distance_circles_plot.py --start 4 --end 12 --detailed
+
+# Larger range with clean visualization
+python examples/plot/goldbach_distance_circles_plot.py --start 4 --end 200
+```
+
+The visualization automatically uses clean mode by default (thin circles, no info boxes) which works well for larger ranges. Use the `--detailed` flag for smaller ranges where you want to see the individual distance values and prime pairs.
+
+Plots:
+
+![Goldbach Distance Circles Plot](imgs/goldbach_distance_circles_4_20.png)
+![Goldbach Distance Circles Plot](imgs/goldbach_distance_circles_4_200.png)
+
 ### Prime Frequencies in Goldbach Pairs
 
 Prime frequency plots show how often each prime appears in any Goldbach pair for even numbers in a given range.
